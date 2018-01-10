@@ -1,2 +1,5 @@
 # sat3-problem
-Boolean satisfiability problem solution for MI-PAA course at FIT CTU
+
+Weighted Boolean satisfiability problem solved with genetic algorithm.
+
+Report containing more detailed information (in Czech language only) can be found in `docs/` folder.

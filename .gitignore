@@ -1,0 +1,13 @@
+target/
+**/*.rs.bk
+results.csv
+solutions.csv
+/report*
+!report-assets/
+!report*.ipynb
+
+### JupyterNotebook ###
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*/target/
+**/*.rs.bk
+Cargo.lock
