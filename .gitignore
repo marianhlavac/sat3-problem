@@ -11,3 +11,5 @@ solutions.csv
 */.ipynb_checkpoints/*/target/
 **/*.rs.bk
 Cargo.lock
+
+.vscode

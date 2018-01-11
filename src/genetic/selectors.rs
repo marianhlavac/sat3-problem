@@ -4,7 +4,7 @@ pub fn tournament<F>(population: &Vec<Vec<bool>>, tournaments: usize,
     pool_size: usize, fitness_fn: &F) -> Vec<Vec<bool>> 
 where F: Fn(&Vec<bool>) -> usize {
     let mut new_pop = Vec::new();
-    let pop_size = population.len();
+    // let pop_size = population.len();
     let mut pool = Vec::new();
     
     // Run tournaments
