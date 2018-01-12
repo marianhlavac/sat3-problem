@@ -1,4 +1,4 @@
-c nejakej zakladni fekal
+c Priklad CNF
 p cnf 4 6
 w 2 4 1 6
 1 -3 4 0
