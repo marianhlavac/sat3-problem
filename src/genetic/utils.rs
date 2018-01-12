@@ -37,5 +37,5 @@ pub fn inspect<F>(generation: usize, sorted_population: &Vec<Vec<bool>>, fitness
     
     let pop_fitness: Vec<usize> = pop.iter().map(|x| fitness_fn(x)).collect();
     
-    println!("{}    fit {}   ind {:?}", generation, pop_fitness[0], pop);
+    println!("{}", pop_fitness[0]);
 }

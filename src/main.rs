@@ -5,14 +5,16 @@ mod solver;
 mod dimacs;
 mod genetic;
 
-fn count_success(problem: &solver::Problem, solution: &solver::Solution) -> f32 {
-    solver::sum_valid_weights(&solution.configuration, &problem.weights) as f32 / problem.maximum as f32
-}
 
 fn main() {
-    let problem = dimacs::read("data/easier.cnfw");
-    println!("{:?}", problem);
-    
-    let solution = solver::solve(&problem);
-    println!("{:?}, success rate {}%", solution, count_success(&problem, &solution) * 100.0);
+    let problem = dimacs::read("data/lubr/input-45/uf20-02.cnf");    
+    let solution = solver::solve(&problem, 0);
+    println!("===\nid,price,variables,clausules,satisfied,weight\n{},{},{},{},{},{}", 
+        solution.id,
+        solution.price,
+        problem.variables,
+        problem.clausules,
+        solution.satisfied,
+        solution.weight,
+    );
 }
