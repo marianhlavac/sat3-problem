@@ -16,7 +16,7 @@ pub fn read(filename: &str) -> Problem {
     let mut formula: Vec<Vec<i16>> = vec![];
     let mut weights: Vec<u16> = vec![0];
 
-    for line in file.lines() {
+    'l: for line in file.lines() {
         if line.is_err() { continue; }
         let uline = line.unwrap();
         let fields: Vec<&str> = uline.split_whitespace().collect();
@@ -40,6 +40,7 @@ pub fn read(filename: &str) -> Problem {
                 }
             },
             "c" => (), // Ignore comments
+            "%" => { break 'l; } // Stop reading
             _ => { // Parse numbers
                 if fields[0].parse::<i16>().is_ok() {
                     if properties.is_some() {
