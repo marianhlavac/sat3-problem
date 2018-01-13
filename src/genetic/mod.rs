@@ -56,7 +56,7 @@ where F: Fn(&Vec<bool>) -> usize, C: Fn(&Vec<bool>) -> bool {
         //print_bitvec(&sorted_population, "before");
         
         // Selection
-        let mut new_population = selectors::tournament(&population, cfg.tments, cfg.tment_size, fitness_fn);
+        let mut new_population = vec![];
         //print_bitvec(&new_population, "newpop");
         
         // Elitism
@@ -70,8 +70,8 @@ where F: Fn(&Vec<bool>) -> usize, C: Fn(&Vec<bool>) -> bool {
             // Mate or select a random individual
             if odds_are(cfg.xover_probability) {
                 // Select two random individuals
-                let in1 = random_individual(&new_population).clone();
-                let in2 = random_individual(&new_population).clone();
+                let in1 = selectors::tournament(&population, 1, cfg.tment_size, fitness_fn);
+                let in2 = selectors::tournament(&population, 1, cfg.tment_size, fitness_fn);
                 
                 // Crossover
                 child = crossover::uniform(in1, in2, 0.5);

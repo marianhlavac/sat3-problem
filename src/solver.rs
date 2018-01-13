@@ -17,6 +17,7 @@ pub struct Solution {
     pub configuration: Vec<bool>,
     pub satisfied: usize,
     pub weight: usize,
+    pub valid: bool,
 }
 
 fn count_satisfied(x: &Vec<bool>, formula: &Vec<Vec<i16>>) -> usize {
@@ -36,9 +37,9 @@ pub fn sum_valid_weights(x: &Vec<bool>, weights: &Vec<u16>) -> usize {
     }) as usize
 }
 
-pub fn solve(problem: &Problem, sol_id: usize) -> Solution {
+pub fn solve(problem: &Problem, sol_id: usize, inspect: bool) -> Solution {
     let clausules = problem.clausules as f32;
-    let k = 0.85;
+    let k = 0.9;
     
     // Define a fitness function
     let fitness_fn = |x: &Vec<bool>| {
@@ -54,16 +55,16 @@ pub fn solve(problem: &Problem, sol_id: usize) -> Solution {
 
     // Configure the evolution
     let configuration = genetic::EvolutionConfiguration {
-        pop_size: 32, // Population size
+        pop_size: 48, // Population size
         chrom_size: problem.variables as usize, // Genome size
-        generations: 1024, // Number of generations
-        xover_probability: 0.9, // Crossover probability
-        mutation_probability: 0.75, // Mutation probability
-        tments: 6, // Tournaments
-        tment_size: 18, // Tournament size
-        elitism: 0, // Elitism
+        generations: 2048, // Number of generations
+        xover_probability: 0.85, // Crossover probability
+        mutation_probability: 0.4, // Mutation probability
+        tments: 1, // Tournaments
+        tment_size: 8, // Tournament size
+        elitism: 1, // Elitism
         using_constraint: false, // Are constraints active?
-        inspect: true, // Inspect evolution?
+        inspect: inspect, // Inspect evolution?
     };
     
     // Simulate
@@ -75,6 +76,7 @@ pub fn solve(problem: &Problem, sol_id: usize) -> Solution {
         price: best_price,
         satisfied: count_satisfied(&best, &problem.formula),
         weight: sum_valid_weights(&best, &problem.weights),
+        valid: constraint_fn(&best),
         configuration: best,
     }
 }
